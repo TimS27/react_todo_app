@@ -1,11 +1,11 @@
-import React from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { add, addRandom } from "./todoSlice";
+import List from "./List";
 
 export function Todo() {
-  const todos = useSelector((state) => state.todo.todos);
+  //const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
-
+  //console.log(todos);
   return (
     <div>
       <button aria-label='Add Todo' onClick={() => dispatch(add())}>
@@ -18,8 +18,7 @@ export function Todo() {
       >
         Add Random
       </button>
-
-      <span>{todos}</span>
+      <List />
     </div>
   );
 }

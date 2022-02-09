@@ -8,16 +8,19 @@ export const todoSlice = createSlice({
   },
   reducers: {
     add: (state) => {
-      // Redux Toolkit allows us to write "mutating" logic in reducers without actually mutating.
-      state.todos.push("test");
+      // Redux Toolkit allows to write "mutating" logic in reducers without actually mutating.
+      state.todos.push({ id: state.todos.length + 1, name: "test" });
     },
     addRandom: (state) => {
-      state.todos.push("Random");
+      state.todos.push({ id: state.todos.length + 1, name: "random" });
+    },
+    remove: (state) => {
+      state.todos.pop();
     },
   },
 });
 
 // Action creators are generated for each case reducer function
-export const { add, addRandom } = todoSlice.actions;
+export const { add, addRandom, remove } = todoSlice.actions;
 
 export default todoSlice.reducer;
