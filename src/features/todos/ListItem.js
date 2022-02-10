@@ -1,13 +1,22 @@
-import { remove } from "./todoSlice";
+import { remove, done } from "./todoSlice";
 import { useSelector, useDispatch } from "react-redux";
+import "./ListItem.css";
 
 export default function ListItem(props) {
   //const todos = useSelector((state) => state.todo.todos);
   const dispatch = useDispatch();
 
   return (
-    <li>
-      {props.name} <span onClick={() => dispatch(remove())}>X</span>
+    <li className={props.status == true ? "checked" : null}>
+      <input type='checkbox' onClick={() => dispatch(done(props.id))} />
+      <span>&nbsp;&nbsp;</span>
+      <span className={props.status == true ? "checked description" : "description"}>
+        {props.name}
+      </span>
+      <span>&nbsp;&nbsp;</span>
+      <span className='delete' onClick={() => dispatch(remove(props.id))}>
+        X
+      </span>
     </li>
   );
 }

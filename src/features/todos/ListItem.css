@@ -1,0 +1,27 @@
+li {
+  list-style: none;
+  background-color: rgb(85, 85, 85);
+  border: 1px solid whitesmoke;
+  border-radius: 5px;
+  margin: 5px;
+  padding: 4px;
+}
+
+li.checked {
+  background-color: green;
+}
+
+span.checked {
+  text-decoration: line-through;
+}
+
+.description {
+  color: white;
+}
+
+.delete {
+  color: red;
+  font-weight: bold;
+  float: right;
+  margin-right: 2%;
+}
