@@ -1,6 +1,8 @@
+@import "../../App.scss";
+
 li {
   list-style: none;
-  background-color: rgb(85, 85, 85);
+  background-color: $gray;
   border: 1px solid whitesmoke;
   border-radius: 5px;
   margin: 5px;

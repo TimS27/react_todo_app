@@ -1,0 +1,12 @@
+@import "../../App.scss";
+
+div {
+  font-family: $standard-font;
+  margin-left: 5px;
+  margin-right: 5px;
+  margin-top: 16px;
+}
+
+span.completed {
+  float: right;
+}

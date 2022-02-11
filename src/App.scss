@@ -1,0 +1,29 @@
+$gray: rgb(85, 85, 85);
+
+$standard-font: "Open Sans", sans-serif;
+
+.App {
+  height: 80%;
+  width: 30%;
+  padding: 20px;
+  border: 2px solid whitesmoke;
+  border-radius: 10px;
+  background-color: whitesmoke;
+  margin: 0;
+}
+
+.title {
+  font-family: $standard-font;
+  color: royalblue;
+  margin-left: 5px;
+}
+
+span {
+  font-family: $standard-font;
+}
+
+@media only screen and (max-width: 600px) {
+  .App {
+    width: 80%;
+  }
+}

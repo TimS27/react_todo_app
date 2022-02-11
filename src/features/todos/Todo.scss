@@ -1,3 +1,5 @@
+@import "../../App.scss";
+
 h1 {
   margin-top: 10px;
 }
@@ -9,7 +11,7 @@ ul {
 button {
   color: white;
   background-color: green;
-  font-family: "Open Sans", sans-serif;
+  font-family: $standard-font;
   padding: 5px;
   margin-left: 5px;
   margin-right: 5px;
@@ -22,4 +24,10 @@ button {
   background: linear-gradient(217deg, rgba(255, 0, 0, 0.8), rgba(255, 0, 0, 0) 70.71%),
     linear-gradient(127deg, rgba(0, 255, 0, 0.8), rgba(0, 255, 0, 0) 70.71%),
     linear-gradient(336deg, rgba(0, 0, 255, 0.8), rgba(0, 0, 255, 0) 70.71%);
+}
+
+@media only screen and (max-width: 600px) {
+  button {
+    width: 40%;
+  }
 }
