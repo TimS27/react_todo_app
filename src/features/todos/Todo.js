@@ -1,25 +1,21 @@
-import { useSelector, useDispatch } from "react-redux";
-import { add, addRandom } from "./todoSlice";
+import { useSelector } from "react-redux";
+import Buttons from "./Buttons.js";
 import List from "./List";
-import "./Todo.scss";
 import Counter from "./Counter";
+import Input from "./Input";
+import "./Todo.scss";
 
 export function Todo() {
-  const todos = useSelector((state) => state.todo.todos);
+  //const todos = useSelector((state) => state.todo.todos);
+  const input = useSelector((state) => state.todo.input);
+  //console.log(todos);
 
-  const dispatch = useDispatch();
-  console.log(todos);
   return (
     <div>
-      <button aria-label='Add Todo' onClick={() => dispatch(add())}>
-        Add
-      </button>
-      <button className='random' aria-label='Add Random Todo' onClick={() => dispatch(addRandom())}>
-        Add Random
-      </button>
-
+      <h1 className='title'>ToDo</h1>
+      <Input value={input} />
+      <Buttons />
       <Counter />
-
       <List />
     </div>
   );

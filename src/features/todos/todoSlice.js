@@ -28,24 +28,58 @@ function addTodo(todosArr, todoName) {
   }
 }
 
+//update cumulatedCounter for chartCounter
+function updateCumulatedCounter(cumulatedCounterArr) {
+  if (cumulatedCounterArr === []) {
+    cumulatedCounterArr.push({
+      cumumaltedCount: 1,
+      up: true,
+    });
+  } else {
+    cumulatedCounterArr.push({
+      cumulatedCount: cumulatedCounterArr[cumulatedCounterArr.length - 1].cumulatedCount + 1,
+      up: true,
+    });
+  }
+}
+
+//############################
+//#### slice with reducer ####
+//############################
+
 export const todoSlice = createSlice({
   name: "todo",
   initialState: {
+    input: "",
     todos: [{ id: 1, name: "Sample Task", status: false }],
     counter: { open: 1, completed: 0 },
+    cumulatedCounter: [{ cumulatedCount: 1, up: true }],
   },
 
   reducers: {
     // Redux Toolkit allows to write "mutating" logic in reducers without actually mutating.
 
+    updateInput: (state, input) => {
+      state.input = input.payload;
+    },
+
     add: (state) => {
-      addTodo(state.todos, "test");
-      state.counter.open++;
+      if (state.input !== "") {
+        addTodo(state.todos, state.input);
+        state.counter.open++;
+        state.input = "";
+
+        //update cumulatedCounter for chartCounter
+        updateCumulatedCounter(state.cumulatedCounter);
+      }
     },
 
     addRandom: (state) => {
       addTodo(state.todos, "random");
       state.counter.open++;
+
+      //update cumulatedCounter for chartCounter
+      updateCumulatedCounter(state.cumulatedCounter);
     },
 
     remove: (state, id) => {
@@ -58,6 +92,15 @@ export const todoSlice = createSlice({
 
       //delete object with correct id
       state.todos.splice(ids.indexOf(id.payload), 1);
+
+      //update cumulatedCounter for chartCounter
+      if (state.cumulatedCounter !== []) {
+        state.cumulatedCounter.push({
+          cumulatedCount:
+            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
+          up: false,
+        });
+      }
     },
 
     done: (state, id) => {
@@ -79,6 +122,6 @@ export const todoSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { add, addRandom, remove, done } = todoSlice.actions;
+export const { add, addRandom, remove, done, updateInput } = todoSlice.actions;
 
 export default todoSlice.reducer;
