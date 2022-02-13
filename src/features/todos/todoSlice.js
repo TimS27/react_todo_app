@@ -113,9 +113,21 @@ export const todoSlice = createSlice({
       if (state.todos[ids.indexOf(id.payload)].status === true) {
         state.counter.open--;
         state.counter.completed++;
+
+        state.cumulatedCounter.push({
+          cumulatedCount:
+            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount + 1,
+          up: false,
+        });
       } else {
         state.counter.open++;
         state.counter.completed--;
+
+        state.cumulatedCounter.push({
+          cumulatedCount:
+            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
+          up: false,
+        });
       }
     },
   },

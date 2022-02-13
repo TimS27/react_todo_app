@@ -17,9 +17,13 @@ table {
   height: 80%;
 }
 
+td {
+  height: 100vh;
+}
+
 div.App {
   height: 80%;
-  width: 40vw;
+  width: 30vw;
   padding: 20px;
   border: 2px solid whitesmoke;
   border-radius: 10px;
@@ -28,10 +32,28 @@ div.App {
   display: flex;
 }
 
-div.chartCounter {
-  height: 50vh;
-  width: 40vw;
+div.chartCategories {
+  height: 300px;
+  width: 30vw;
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+div.chartCounter {
+  height: 300px;
+  width: 30vw;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+h3 {
+  color: whitesmoke;
+  font-family: $standard-font;
 }
 
 .invisible {

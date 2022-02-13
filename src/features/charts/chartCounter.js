@@ -9,15 +9,16 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
-export default class Example extends PureComponent {
+export default class ChartCounter extends PureComponent {
   constructor(props) {
     super(props);
   }
 
   render() {
+    //######calculate color breaks######
     const upDown = [];
     const percentages = [{ value: 0, color: "red" }];
-    const percentagesForHardBreaks = [];
+    //const percentagesForHardBreaks = [];
     var colorChange = true;
 
     for (let i = 0; i < this.props.data.length; i++) {
@@ -27,11 +28,11 @@ export default class Example extends PureComponent {
     for (let i = 0; i < upDown.length; i++) {
       if (upDown[i] !== upDown[i - 1] && i !== 0) {
         if (colorChange === true) {
-          percentages.push({ value: i / upDown.length, color: "red" });
-          percentages.push({ value: i / upDown.length, color: "green" });
+          percentages.push({ value: (i - 1) / (upDown.length - 1), color: "red" });
+          percentages.push({ value: (i - 1) / (upDown.length - 1), color: "green" });
         } else {
-          percentages.push({ value: i / upDown.length, color: "green" });
-          percentages.push({ value: i / upDown.length, color: "red" });
+          percentages.push({ value: (i - 1) / (upDown.length - 1), color: "green" });
+          percentages.push({ value: (i - 1) / (upDown.length - 1), color: "red" });
         }
         if (colorChange === true) {
           colorChange = false;
@@ -41,6 +42,7 @@ export default class Example extends PureComponent {
       }
     }
 
+    /*
     for (let i = 0; i < percentages.length; i++) {
       if (i % 2 !== 0) {
         percentagesForHardBreaks.push(percentages[i] - percentages[i - 1]);
@@ -48,14 +50,19 @@ export default class Example extends PureComponent {
         percentagesForHardBreaks.push(percentages[i]);
       }
     }
+    */
 
-    const breaks = percentages.map((percentage, index) => (
+    const breaks = percentages.map((percentage, index) => [
+      //String(percentage.value * 100) + "%",
+      //percentage.color,
       <stop
         key={index}
         offset={String(String(percentage.value * 100) + "%")}
         stopColor={percentage.color}
-      />
-    ));
+      />,
+    ]);
+
+    //#################################
 
     console.log("UpDown: " + upDown);
     console.log("Percentages: " + percentages);
@@ -94,7 +101,7 @@ export default class Example extends PureComponent {
 
           <CartesianGrid strokeDasharray='3 3' />
           <XAxis dataKey='up' />
-          <YAxis />
+          <YAxis allowDecimals={false} />
           <Area
             dot={false}
             activeDot={false}

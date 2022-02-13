@@ -1,7 +1,9 @@
 import "./App";
-import Example from "./features/charts/chartCounter.js";
+import ChartCounter from "./features/charts/chartCounter.js";
+import ChartCategories from "./features/charts/chartCategories";
 import { Todo } from "./features/todos/Todo";
 import { useSelector } from "react-redux";
+import "./features/charts/chartCategories.scss";
 
 function App() {
   const cumulatedCounter = useSelector((state) => state.todo.cumulatedCounter);
@@ -12,13 +14,20 @@ function App() {
         <tbody>
           <tr>
             <td>
+              <div className='chartCategories'>
+                <h3>Your Taks by Categories</h3>
+                <ChartCategories />
+              </div>
+            </td>
+            <td>
               <div className='App'>
                 <Todo />
               </div>
             </td>
             <td>
               <div className='chartCounter'>
-                <Example data={cumulatedCounter} />
+                <h3>Your Open Task Progression</h3>
+                <ChartCounter data={cumulatedCounter} />
               </div>
             </td>
           </tr>
