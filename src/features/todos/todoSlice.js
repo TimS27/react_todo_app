@@ -90,16 +90,28 @@ export const todoSlice = createSlice({
         state.counter.open--;
       }
 
-      //delete object with correct id
-      state.todos.splice(ids.indexOf(id.payload), 1);
-
       //update cumulatedCounter for chartCounter
       if (state.cumulatedCounter !== []) {
-        state.cumulatedCounter.push({
-          cumulatedCount:
-            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
-          up: false,
-        });
+        if (state.todos[ids.indexOf(id.payload)].status === false) {
+          state.cumulatedCounter.push({
+            cumulatedCount: state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
+            up: false,
+          });
+        }
+        // else {
+        //   state.cumulatedCounter.push({
+        //     cumulatedCount: state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount,
+        //     up: false,
+        //   });
+        // }
+      }
+
+      //delete object with correct id
+      if (ids.indexOf(id.payload) >= state.todos.length) {
+        state.todos.splice(state.todos.length - 1, 1);
+      } else {
+        state.todos.splice(ids.indexOf(id.payload), 1);
+        console.log(ids.indexOf(id.payload));
       }
     },
 
@@ -115,8 +127,7 @@ export const todoSlice = createSlice({
         state.counter.completed++;
 
         state.cumulatedCounter.push({
-          cumulatedCount:
-            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount + 1,
+          cumulatedCount: state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
           up: false,
         });
       } else {
@@ -124,9 +135,8 @@ export const todoSlice = createSlice({
         state.counter.completed--;
 
         state.cumulatedCounter.push({
-          cumulatedCount:
-            state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount - 1,
-          up: false,
+          cumulatedCount: state.cumulatedCounter[state.cumulatedCounter.length - 1].cumulatedCount + 1,
+          up: true,
         });
       }
     },

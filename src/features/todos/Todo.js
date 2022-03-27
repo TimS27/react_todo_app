@@ -6,9 +6,9 @@ import Input from "./Input";
 import "./Todo.scss";
 
 export function Todo() {
-  //const todos = useSelector((state) => state.todo.todos);
+  const todos = useSelector((state) => state.todo.todos);
   const input = useSelector((state) => state.todo.input);
-  //console.log(todos);
+  console.log(todos);
 
   return (
     <div>
