@@ -1,18 +1,10 @@
 import React, { PureComponent } from "react";
-import {
-  AreaChart,
-  Area,
-  XAxis,
-  YAxis,
-  CartesianGrid,
-  Tooltip,
-  ResponsiveContainer,
-} from "recharts";
+import { AreaChart, Area, XAxis, YAxis, CartesianGrid, ResponsiveContainer } from "recharts";
 
 export default class ChartCounter extends PureComponent {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   render() {
     //######calculate color breaks######
@@ -55,11 +47,7 @@ export default class ChartCounter extends PureComponent {
     const breaks = percentages.map((percentage, index) => [
       //String(percentage.value * 100) + "%",
       //percentage.color,
-      <stop
-        key={index}
-        offset={String(String(percentage.value * 100) + "%")}
-        stopColor={percentage.color}
-      />,
+      <stop key={index} offset={String(String(percentage.value * 100) + "%")} stopColor={percentage.color} />,
     ]);
 
     //#################################
@@ -92,10 +80,7 @@ export default class ChartCounter extends PureComponent {
             <linearGradient id='gradient' x1='0' y1='0' x2='100%' y2='0'>
               <stop offset='0%' stopColor='red' />
               {breaks}
-              <stop
-                offset='100%'
-                stopColor={percentages[percentages.length - 1].color === "green" ? "green" : "red"}
-              />
+              <stop offset='100%' stopColor={percentages[percentages.length - 1].color === "green" ? "green" : "red"} />
             </linearGradient>
           </defs>
 
