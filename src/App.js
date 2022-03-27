@@ -16,6 +16,7 @@ function App() {
             <td>
               <div className='chartCategories'>
                 <h3>Your Taks by Categories</h3>
+                <p>(not yet implemented)</p>
                 <ChartCategories />
               </div>
             </td>
