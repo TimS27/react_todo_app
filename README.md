@@ -13,6 +13,7 @@ https://tims27-react-todo-app.netlify.app/
 Status:
 <br>
 Base functionality is implemented.<br>
+Random task generation not implemented.<br>
 Code needs some refactoring since it was a learning project and was partly restructured many times while building.<br>
 Layout not fully responsive yet.<br>
 Categories not yet implemented.<br>
